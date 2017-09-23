@@ -3,7 +3,7 @@
 //require('protocolbuffers.inc.php');
 
 // message Log.Content
-class Log_Content {
+class Aliyun_Log_Content {
   private $_unknown;
 
   function __construct($in = NULL, &$limit = PHP_INT_MAX) {
@@ -126,7 +126,7 @@ class Log_Content {
 }
 
 // message Log
-class Log {
+class Aliyun_Log_MessageLog {
   private $_unknown;
 
   function __construct($in = NULL, &$limit = PHP_INT_MAX) {
@@ -166,7 +166,7 @@ class Log {
           if ($len === false)
             throw new Exception('Protobuf::read_varint returned false');
           $limit-=$len;
-          $this->contents_[] = new Log_Content($fp, $len);
+          $this->contents_[] = new Aliyun_Log_Content($fp, $len);
           ASSERT('$len == 0');
           break;
         default:
@@ -236,11 +236,11 @@ class Log {
   public function addContents($value) { $this->contents_[] = $value; }
   public function addAllContents(array $values) { foreach($values as $value) {$this->contents_[] = $value;} }
 
-  // @@protoc_insertion_point(class_scope:Log)
+  // @@protoc_insertion_point(class_scope:Aliyun_Log_MessageLog)
 }
 
 // message LogGroup
-class LogGroup {
+class Aliyun_Log_LogGroup {
   private $_unknown;
 
   function __construct($in = NULL, &$limit = PHP_INT_MAX) {
@@ -272,7 +272,7 @@ class LogGroup {
           if ($len === false)
             throw new Exception('Protobuf::read_varint returned false');
           $limit-=$len;
-          $this->logs_[] = new Log($fp, $len);
+          $this->logs_[] = new Aliyun_Log_MessageLog($fp, $len);
           ASSERT('$len == 0');
           break;
         case 2:
@@ -425,7 +425,7 @@ class LogGroup {
 }
 
 // message LogGroupList
-class LogGroupList {
+class Aliyun_Log_LogGroupList {
   private $_unknown;
 
   function __construct($in = NULL, &$limit = PHP_INT_MAX) {
@@ -457,7 +457,7 @@ class LogGroupList {
           if ($len === false)
             throw new Exception('Protobuf::read_varint returned false');
           $limit-=$len;
-          $this->logGroupList_[] = new LogGroup($fp, $len);
+          $this->logGroupList_[] = new Aliyun_Log_LogGroup($fp, $len);
           ASSERT('$len == 0');
           break;
         default:
@@ -510,6 +510,6 @@ class LogGroupList {
   public function addLogGroupList($value) { $this->logGroupList_[] = $value; }
   public function addAllLogGroupList(array $values) { foreach($values as $value) {$this->logGroupList_[] = $value;} }
 
-  // @@protoc_insertion_point(class_scope:LogGroupList)
+  // @@protoc_insertion_point(class_scope:Aliyun_Log_LogGroupList)
 }
 

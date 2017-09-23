@@ -232,7 +232,7 @@ class Aliyun_Log_Client {
         if (count ( $request->getLogitems () ) > 4096)
             throw new Aliyun_Log_Exception ( 'InvalidLogSize', "logItems' length exceeds maximum limitation: 4096 lines." );
         
-        $logGroup = new LogGroup ();
+        $logGroup = new Aliyun_Log_LogGroup ();
         $topic = $request->getTopic () !== null ? $request->getTopic () : '';
         $logGroup->setTopic ( $request->getTopic () );
         $source = $request->getSource ();
@@ -242,11 +242,11 @@ class Aliyun_Log_Client {
         $logGroup->setSource ( $source );
         $logitems = $request->getLogitems ();
         foreach ( $logitems as $logItem ) {
-            $log = new Log ();
+            $log = new Aliyun_Log_MessageLog ();
             $log->setTime ( $logItem->getTime () );
             $content = $logItem->getContents ();
             foreach ( $content as $key => $value ) {
-                $content = new Log_Content ();
+                $content = new Aliyun_Log_Content ();
                 $content->setKey ( $key );
                 $content->setValue ( $value );
                 $log->addContents ( $content );
@@ -518,10 +518,10 @@ class Aliyun_Log_Client {
       list($resp,$header) = $this->send("GET",$project,NULL,$resource,$params,$headers);
       //$resp is a byteArray
       $resp =  gzuncompress($resp);
-      if($resp===false)$resp = new LogGroupList();
+      if($resp===false)$resp = new Aliyun_Log_LogGroupList();
       
       else {
-          $resp = new LogGroupList($resp);
+          $resp = new Aliyun_Log_LogGroupList($resp);
       }
       return new Aliyun_Log_Models_BatchGetLogsResponse ( $resp, $header );
     }

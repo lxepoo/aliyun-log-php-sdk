@@ -3,7 +3,7 @@
 //require('protocolbuffers.inc.php');
 
 // message Log.Content
-class Log_Content {
+class Aliyun_Log_Content {
   private $_unknown;
   
   function __construct($in = NULL, &$limit = PHP_INT_MAX) {
@@ -126,7 +126,7 @@ class Log_Content {
 }
 
 // message Log
-class Log {
+class Aliyun_Log_MessageLog {
   private $_unknown;
   
   function __construct($in = NULL, &$limit = PHP_INT_MAX) {
@@ -166,7 +166,7 @@ class Log {
           if ($len === false)
             throw new Exception('Protobuf::read_varint returned false');
           $limit-=$len;
-          $this->contents_[] = new Log_Content($fp, $len);
+          $this->contents_[] = new Aliyun_Log_Content($fp, $len);
           ASSERT('$len == 0');
           break;
         default:
@@ -240,7 +240,7 @@ class Log {
 }
 
 // message LogGroup
-class LogGroup {
+class Aliyun_Log_LogGroup {
   private $_unknown;
   
   function __construct($in = NULL, &$limit = PHP_INT_MAX) {
@@ -272,7 +272,7 @@ class LogGroup {
           if ($len === false)
             throw new Exception('Protobuf::read_varint returned false');
           $limit-=$len;
-          $this->logs_[] = new Log($fp, $len);
+          $this->logs_[] = new Aliyun_Log_MessageLog($fp, $len);
           ASSERT('$len == 0');
           break;
         case 2:
@@ -425,7 +425,7 @@ class LogGroup {
 }
 
 // message LogPackage
-class LogPackage {
+class Aliyun_Log_LogPackage {
   private $_unknown;
   
   function __construct($in = NULL, &$limit = PHP_INT_MAX) {
@@ -539,7 +539,7 @@ class LogPackage {
 }
 
 // message LogPackageList
-class LogPackageList {
+class Aliyun_Log_LogPackageList {
   private $_unknown;
   
   function __construct($in = NULL, &$limit = PHP_INT_MAX) {
@@ -571,7 +571,7 @@ class LogPackageList {
           if ($len === false)
             throw new Exception('Protobuf::read_varint returned false');
           $limit-=$len;
-          $this->packages_[] = new LogPackage($fp, $len);
+          $this->packages_[] = new Aliyun_Log_LogPackage($fp, $len);
           ASSERT('$len == 0');
           break;
         default:
